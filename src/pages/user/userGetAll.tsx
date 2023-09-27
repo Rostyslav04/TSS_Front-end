@@ -16,11 +16,16 @@ export default function UserGetAll() {
   return (
     <>
       <div>
-        {data && (
-          <div>
-            {data[0].phone}
-          </div>
-        )}
+        {data &&
+          data.map((item: any) => (
+            <>
+              <div>{item.firstName}</div>
+              <div>{item.lastName}</div>
+              <div>{item.surName}</div>
+              <div>{item.phone}</div>
+              <div>{item.email}</div>
+            </>
+          ))}
       </div>
     </>
   );
