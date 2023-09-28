@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Create } from '../../service/car.service';
 
 export default function CarCreate() {
-  const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
@@ -13,23 +11,27 @@ export default function CarCreate() {
   const [VIN, setVIN] = useState('');
   const navigate = useNavigate();
 
-  const gitOnServer = async () => {
-    const res = await Create();
-    setData(res);
-  };
-
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/car/create', data);
+      const response = await axios.post('http://localhost:3001/car/create', {
+        VIN,
+        model,
+        year,
+        registerPlate,
+        brand,
+      });
 
       if (response.status === 200) {
-        console.log('Дякуємо за повідомлення!');
+        console.log('Автомобіль створено!');
+        navigate('/car/getAll');
       } else {
         console.log('Виникла помилка!');
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const pages = [
@@ -41,11 +43,15 @@ export default function CarCreate() {
       id: '/user/getAll',
       label: 'users',
     },
+    {
+      id: '/car/create',
+      label: 'car create',
+    },
+    {
+      id: '/car/delete',
+      label: 'car delete',
+    },
   ];
-
-  useEffect(() => {
-    gitOnServer();
-  }, []);
 
   return (
     <>

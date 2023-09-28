@@ -20,6 +20,14 @@ export default function UserGetAll() {
       id: '/user/getAll',
       label: 'users',
     },
+    {
+      id: '/car/create',
+      label: 'car create',
+    },
+    {
+      id: '/car/delete',
+      label: 'car delete',
+    },
   ];
 
   useEffect(() => {

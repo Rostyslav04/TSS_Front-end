@@ -20,6 +20,14 @@ export default function CarGetAll() {
       id: '/user/getAll',
       label: 'users',
     },
+    {
+      id: '/car/create',
+      label: 'car create',
+    },
+    {
+      id: '/car/delete',
+      label: 'car delete',
+    },
   ];
 
   useEffect(() => {
@@ -46,11 +54,12 @@ export default function CarGetAll() {
         {car &&
           car.map((item: any) => (
             <>
-              <div>{item.brand}</div>
-              <div>{item.model}</div>
-              <div>{item.year}</div>
-              <div>{item.registerPlate}</div>
-              <div>{item.VIN}</div>
+              <div>ID: {item.id}</div>
+              <div>Марка: {item.brand}</div>
+              <div>Модель: {item.model}</div>
+              <div>Рік: {item.year}</div>
+              <div>Номер: {item.registerPlate}</div>
+              <div>VIN: {item.VIN}</div>
             </>
           ))}
       </div>
