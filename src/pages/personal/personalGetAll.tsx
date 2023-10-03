@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserService } from '../../service/user.service';
+import { getAll } from '../../service/personal.service';
 
-export default function UserGetAll() {
+export default function PersonalGetAll() {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const gitOnServer = async () => {
-    const res = await UserService();
+    const res = await getAll();
     setData(res);
   };
 
@@ -84,6 +84,7 @@ export default function UserGetAll() {
               <div>По батькові: {item.surName}</div>
               <div>Телефон: {item.phone}</div>
               <div>Email: {item.email}</div>
+              <div>Посада: {item.role}</div>
             </>
           ))}
       </div>

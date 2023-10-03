@@ -59,6 +59,22 @@ export default function CarCreate() {
       id: '/user/create',
       label: 'user create',
     },
+    {
+      id: '/user/delete',
+      label: 'user delete',
+    },
+    {
+      id: '/personal/delete',
+      label: 'personal delete',
+    },
+    {
+      id: '/personal/create',
+      label: 'personal create',
+    },
+    {
+      id: '/personal/getAll',
+      label: 'personal',
+    },
   ];
 
   return (

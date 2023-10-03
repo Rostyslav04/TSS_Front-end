@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/user/login';
 import Register from './pages/user/register';
 import UserGetById from './pages/user/userGetById';
@@ -24,6 +24,7 @@ import OrderDelete from './pages/order/orderDelete';
 import OrderToPersonalGetById from './pages/orderToPersonal/orderToPersonalGetById';
 import OrderToPersonalCreate from './pages/orderToPersonal/orderToPersonalCreate';
 import OrderToPersonalDelete from './pages/orderToPersonal/orderToPersonalDelete';
+import PersonalGetAll from './pages/personal/personalGetAll';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
   {
     path: '/personal/delete',
     element: <PersonalDelete />,
+  },
+  {
+    path: '/personal/getAll',
+    element: <PersonalGetAll />,
   },
 
   // ----------------------------------------------------------------------

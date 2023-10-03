@@ -7,7 +7,6 @@ export default function UserCreate() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [surName, setSurName] = useState('');
-  const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +20,6 @@ export default function UserCreate() {
         firstName,
         lastName,
         surName,
-        age,
         phone,
         email,
         password,
@@ -63,6 +61,22 @@ export default function UserCreate() {
       id: '/user/create',
       label: 'user create',
     },
+    {
+      id: '/user/delete',
+      label: 'user delete',
+    },
+    {
+      id: '/personal/delete',
+      label: 'personal delete',
+    },
+    {
+      id: '/personal/create',
+      label: 'personal create',
+    },
+    {
+      id: '/personal/getAll',
+      label: 'personal',
+    },
   ];
 
   return (
@@ -85,7 +99,6 @@ export default function UserCreate() {
         <input type="text" placeholder="Ім'я" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
         <input type="text" placeholder="Прізвище" value={lastName} onChange={(e) => setLastName(e.target.value)} />
         <input type="text" placeholder="По батькові" value={surName} onChange={(e) => setSurName(e.target.value)} />
-        <input type="text" placeholder="Вік" value={age} onChange={(e) => setAge(e.target.value)} />
         <input type="text" placeholder="Телефон" value={phone} onChange={(e) => setPhone(e.target.value)} />
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="text" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
