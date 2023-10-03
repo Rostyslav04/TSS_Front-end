@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CarDelete() {
@@ -42,6 +42,14 @@ export default function CarDelete() {
     {
       id: '/car/delete',
       label: 'car delete',
+    },
+    {
+      id: '/',
+      label: 'login',
+    },
+    {
+      id: '/user/create',
+      label: 'user create',
     },
   ];
 

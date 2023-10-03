@@ -28,6 +28,14 @@ export default function UserGetAll() {
       id: '/car/delete',
       label: 'car delete',
     },
+    {
+      id: '/',
+      label: 'login',
+    },
+    {
+      id: '/user/create',
+      label: 'user create',
+    },
   ];
 
   useEffect(() => {
@@ -54,11 +62,11 @@ export default function UserGetAll() {
         {data &&
           data.map((item: any) => (
             <>
-              <div>{item.firstName}</div>
-              <div>{item.lastName}</div>
-              <div>{item.surName}</div>
-              <div>{item.phone}</div>
-              <div>{item.email}</div>
+              <div>Ім'я: {item.firstName}</div>
+              <div>Прізвище: {item.lastName}</div>
+              <div>По батькові: {item.surName}</div>
+              <div>Телефон: {item.phone}</div>
+              <div>Email: {item.email}</div>
             </>
           ))}
       </div>

@@ -28,6 +28,14 @@ export default function CarGetAll() {
       id: '/car/delete',
       label: 'car delete',
     },
+    {
+      id: '/',
+      label: 'login',
+    },
+    {
+      id: '/user/create',
+      label: 'user create',
+    },
   ];
 
   useEffect(() => {
