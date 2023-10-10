@@ -20,6 +20,7 @@ import UserToCarCreate from './pages/userToCar/userToCarCreate';
 import UserToCarDelete from './pages/userToCar/userToCarDelete';
 import OrderGetById from './pages/order/orderGetById';
 import OrderCreate from './pages/order/orderCreate';
+import OrderGetAll from './pages/order/orderGetAll';
 import OrderDelete from './pages/order/orderDelete';
 import OrderToPersonalGetById from './pages/orderToPersonal/orderToPersonalGetById';
 import OrderToPersonalCreate from './pages/orderToPersonal/orderToPersonalCreate';
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
   {
     path: '/order/delete',
     element: <OrderDelete />,
+  },
+  {
+    path: '/order/getAll',
+    element: <OrderGetAll />,
   },
 
   // ----------------------------------------------------------------------

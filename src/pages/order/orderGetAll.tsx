@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserService } from '../../service/user.service';
+import { OrderAll } from '../../service/order.service';
 
-export default function UserGetAll() {
-  const [data, setData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
+export default function OrderGetAll() {
   const navigate = useNavigate();
+
+  const [order, setOrder] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const gitOnServer = async () => {
-    const res = await UserService();
-    setData(res);
+    const res = await OrderAll();
+    setOrder(res);
   };
 
   const pages = [
@@ -87,16 +89,15 @@ export default function UserGetAll() {
             {page.label}
           </button>
         ))}
-        {data &&
-          data.map((item: any) => (
-            <>
+        {order &&
+          order.map((item: any) => (
+            <div key={item.id}>
               <div>ID: {item.id}</div>
-              <div>Ім'я: {item.firstName}</div>
-              <div>Прізвище: {item.lastName}</div>
-              <div>По батькові: {item.surName}</div>
-              <div>Телефон: {item.phone}</div>
-              <div>Email: {item.email}</div>
-            </>
+              <div>ID Користувача: {item.userId}</div>
+              <div>ID Автомобіля: {item.carId}</div>
+              <div>Список робіт: {item.workList}</div>
+              <div>Час реєстрації запиту: {item.createData}</div>
+            </div>
           ))}
       </div>
     </>

@@ -11,7 +11,7 @@ export default function PersonalDelete() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/user/delete', {
+      const response = await axios.post('http://localhost:3001/personal/delete', {
         id,
       });
 
@@ -66,6 +66,18 @@ export default function PersonalDelete() {
     {
       id: '/personal/getAll',
       label: 'personal',
+    },
+    {
+      id: '/order/create',
+      label: 'order create',
+    },
+    {
+      id: '/order/getAll',
+      label: 'order',
+    },
+    {
+      id: '/order/delete',
+      label: 'order delete',
     },
   ];
 

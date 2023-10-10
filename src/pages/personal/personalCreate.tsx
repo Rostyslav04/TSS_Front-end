@@ -17,7 +17,7 @@ export default function PersonalCreate() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/user/create', {
+      const response = await axios.post('http://localhost:3001/personal/create', {
         firstName,
         lastName,
         surName,
@@ -78,6 +78,18 @@ export default function PersonalCreate() {
     {
       id: '/personal/getAll',
       label: 'personal',
+    },
+    {
+      id: '/order/create',
+      label: 'order create',
+    },
+    {
+      id: '/order/getAll',
+      label: 'order',
+    },
+    {
+      id: '/order/delete',
+      label: 'order delete',
     },
   ];
 
