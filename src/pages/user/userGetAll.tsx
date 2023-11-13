@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../service/user.service';
+import styles from './user.module.scss';
 
 export default function UserGetAll() {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<any>(null);
   const navigate = useNavigate();
   const gitOnServer = async () => {
     const res = await UserService();
@@ -64,6 +66,10 @@ export default function UserGetAll() {
       id: '/order/delete',
       label: 'order delete',
     },
+    {
+      id: '/userToCar/create',
+      label: 'userToCar create',
+    },
   ];
 
   useEffect(() => {
@@ -72,7 +78,7 @@ export default function UserGetAll() {
 
   return (
     <>
-      <div>
+      <div className={styles.header}>
         {pages.map((page) => (
           <button
             key={page.id}
@@ -82,22 +88,42 @@ export default function UserGetAll() {
             }}
             disabled={isLoading}
             type="button"
-            className="btn btn-primary"
+            className={styles.btn}
           >
             {page.label}
           </button>
         ))}
-        {data &&
-          data.map((item: any) => (
+      </div>
+      <div className={styles.info}>
+        <div className={styles.sidebar}>
+          {data &&
+            data.map((item: any) => (
+              <>
+                <div
+                  className={styles.item} 
+                  onClick={() => {
+                    setSelectedUser(item);
+                    console.log(item);
+                  }}
+                >
+                  {item.firstName} {item.lastName} {item.surName}
+                </div>
+              </>
+            ))}
+        </div>
+
+        <div className={styles.content}>
+          {selectedUser && (
             <>
-              <div>ID: {item.id}</div>
-              <div>Ім'я: {item.firstName}</div>
-              <div>Прізвище: {item.lastName}</div>
-              <div>По батькові: {item.surName}</div>
-              <div>Телефон: {item.phone}</div>
-              <div>Email: {item.email}</div>
+              <div>ID: {selectedUser.id}</div>
+              <div>Ім'я: {selectedUser.firstName}</div>
+              <div>Прізвище: {selectedUser.lastName}</div>
+              <div>По батькові: {selectedUser.surName}</div>
+              <div>Телефон: {selectedUser.phone}</div>
+              <div>Email: {selectedUser.email}</div>
             </>
-          ))}
+          )}
+        </div>
       </div>
     </>
   );

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './user.module.scss';
 
 export default function LoginFunction() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [phone, setPhone] = useState('')
-  const [password, setPassword] = useState('')
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
@@ -19,7 +19,7 @@ export default function LoginFunction() {
 
       if (response.status === 200) {
         console.log('rebvbf');
-        navigate('/car/getAll');
+        navigate('/user/getAll');
       } else {
         console.log('err');
       }
@@ -27,82 +27,49 @@ export default function LoginFunction() {
       console.log(error);
     }
   };
-  const pages = [
-    {
-      id: '/car/getAll',
-      label: 'cars',
-    },
-    {
-      id: '/user/getAll',
-      label: 'users',
-    },
-    {
-      id: '/car/create',
-      label: 'car create',
-    },
-    {
-      id: '/car/delete',
-      label: 'car delete',
-    },
-    {
-      id: '/',
-      label: 'login',
-    },
-    {
-      id: '/user/create',
-      label: 'user create',
-    },
-    {
-      id: '/user/delete',
-      label: 'user delete',
-    },
-    {
-      id: '/personal/delete',
-      label: 'personal delete',
-    },
-    {
-      id: '/personal/create',
-      label: 'personal create',
-    },
-    {
-      id: '/personal/getAll',
-      label: 'personal',
-    },
-    {
-      id: '/order/create',
-      label: 'order create',
-    },
-    {
-      id: '/order/getAll',
-      label: 'order',
-    },
-    {
-      id: '/order/delete',
-      label: 'order delete',
-    },
-  ];
 
   return (
-    <>
-      {pages.map((page) => (
-        <button
-          key={page.id}
-          onClick={() => {
-            setIsLoading(true);
-            navigate(page.id);
-          }}
-          disabled={isLoading}
-          type="button"
-          className="btn btn-primary"
-        >
-          {page.label}
-        </button>
-      ))}
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="телефон" value={phone} onChange={(e) => setPhone(e.target.value)} />
-        <input type="text" placeholder="пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Надіслати</button>
-      </form>
-    </>
+    <div className={styles.login}>
+      <div className={styles.loginWindow}>
+        Авторизація
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.form__group}>
+            <input
+              type="input"
+              className={styles.form__field}
+              placeholder="Телефон"
+              name="name"
+              id="name"
+              autoComplete="off"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+            <label htmlFor="name" className={styles.form__label}>
+              Телефон
+            </label>
+          </div>
+          <div className={styles.form__group}>
+            <input
+              type="input"
+              className={styles.form__field}
+              placeholder="Пароль"
+              name="name"
+              id="name"
+              autoComplete="off"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <label htmlFor="name" className={styles.form__label}>
+              Пароль
+            </label>
+          </div>
+          <button type="submit" className={styles.button}>
+            Надіслати
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }

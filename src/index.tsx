@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/user/login';
-import Register from './pages/user/register';
 import UserGetById from './pages/user/userGetById';
 import UserCreate from './pages/user/userCreate';
 import UserDelete from './pages/user/userDelete';
@@ -22,10 +21,8 @@ import OrderGetById from './pages/order/orderGetById';
 import OrderCreate from './pages/order/orderCreate';
 import OrderGetAll from './pages/order/orderGetAll';
 import OrderDelete from './pages/order/orderDelete';
-import OrderToPersonalGetById from './pages/orderToPersonal/orderToPersonalGetById';
-import OrderToPersonalCreate from './pages/orderToPersonal/orderToPersonalCreate';
-import OrderToPersonalDelete from './pages/orderToPersonal/orderToPersonalDelete';
 import PersonalGetAll from './pages/personal/personalGetAll';
+import './index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -33,10 +30,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Login />,
-  },
-  {
-    path: '/register',
-    element: <Register />,
   },
   {
     path: '/user/getById',
@@ -124,21 +117,6 @@ const router = createBrowserRouter([
   {
     path: '/order/getAll',
     element: <OrderGetAll />,
-  },
-
-  // ----------------------------------------------------------------------
-
-  {
-    path: '/orderToPersonal/getById',
-    element: <OrderToPersonalGetById />,
-  },
-  {
-    path: '/orderToPersonal/create',
-    element: <OrderToPersonalCreate />,
-  },
-  {
-    path: '/orderToPersonal/delete',
-    element: <OrderToPersonalDelete />,
   },
 
   // ----------------------------------------------------------------------
