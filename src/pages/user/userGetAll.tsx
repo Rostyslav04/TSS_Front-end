@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../service/user.service';
 import styles from './user.module.scss';
+import LogoImg from '../../../src/assets/img/logo.png';
+import exitImg from '../../../src/assets/img/exit.png';
 
 export default function UserGetAll() {
   const [data, setData] = useState<any>(null);
@@ -16,59 +18,19 @@ export default function UserGetAll() {
   const pages = [
     {
       id: '/car/getAll',
-      label: 'cars',
+      label: 'Автомобілі',
     },
     {
       id: '/user/getAll',
-      label: 'users',
-    },
-    {
-      id: '/car/create',
-      label: 'car create',
-    },
-    {
-      id: '/car/delete',
-      label: 'car delete',
-    },
-    {
-      id: '/',
-      label: 'login',
-    },
-    {
-      id: '/user/create',
-      label: 'user create',
-    },
-    {
-      id: '/user/delete',
-      label: 'user delete',
-    },
-    {
-      id: '/personal/delete',
-      label: 'personal delete',
-    },
-    {
-      id: '/personal/create',
-      label: 'personal create',
+      label: 'Клієнти',
     },
     {
       id: '/personal/getAll',
-      label: 'personal',
-    },
-    {
-      id: '/order/create',
-      label: 'order create',
+      label: 'Персонал',
     },
     {
       id: '/order/getAll',
-      label: 'order',
-    },
-    {
-      id: '/order/delete',
-      label: 'order delete',
-    },
-    {
-      id: '/userToCar/create',
-      label: 'userToCar create',
+      label: 'Заявки',
     },
   ];
 
@@ -79,20 +41,32 @@ export default function UserGetAll() {
   return (
     <>
       <div className={styles.header}>
-        {pages.map((page) => (
-          <button
-            key={page.id}
+        <div className={styles.header1}>
+          <img src={LogoImg} alt="error" className={styles.logoImg} />
+          <div
             onClick={() => {
-              setIsLoading(true);
-              navigate(page.id);
+              window.location.href = '/';
             }}
-            disabled={isLoading}
-            type="button"
-            className={styles.btn}
           >
-            {page.label}
-          </button>
-        ))}
+            <img src={exitImg} alt="error" className={styles.exitImg} />
+          </div>
+        </div>
+        <div className={styles.header2}>
+          {pages.map((page) => (
+            <button
+              key={page.id}
+              onClick={() => {
+                setIsLoading(true);
+                navigate(page.id);
+              }}
+              disabled={isLoading}
+              type="button"
+              className={styles.btn}
+            >
+              {page.label}
+            </button>
+          ))}
+        </div>
       </div>
       <div className={styles.info}>
         <div className={styles.sidebar}>
@@ -100,7 +74,7 @@ export default function UserGetAll() {
             data.map((item: any) => (
               <>
                 <div
-                  className={styles.item} 
+                  className={styles.item}
                   onClick={() => {
                     setSelectedUser(item);
                     console.log(item);
@@ -124,6 +98,8 @@ export default function UserGetAll() {
             </>
           )}
         </div>
+
+        <div className={styles.createCar}>{/* <button>+</button> */}</div>
       </div>
     </>
   );
