@@ -4,8 +4,6 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/user/login';
 import UserGetById from './pages/user/userGetById';
-import UserCreate from './pages/user/userCreate';
-import UserDelete from './pages/user/userDelete';
 import UserGetAll from './pages/user/userGetAll';
 import CarGetAll from './pages/car/carGetAll';
 import CarGetById from './pages/car/carGetById';
@@ -34,14 +32,6 @@ const router = createBrowserRouter([
   {
     path: '/user/getById',
     element: <UserGetById />,
-  },
-  {
-    path: '/user/create',
-    element: <UserCreate />,
-  },
-  {
-    path: '/user/delete',
-    element: <UserDelete />,
   },
   {
     path: '/user/getAll',

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OrderAll } from '../../service/order.service';
+import styles from './order.module.scss';
+import LogoImg from '../../../src/assets/img/logo.png';
+import exitImg from '../../../src/assets/img/exit.png';
 
 export default function OrderGetAll() {
   const navigate = useNavigate();
-
+  const [selectedOrder, setSelectedOrder] = useState<any>(null);
   const [order, setOrder] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -16,55 +19,19 @@ export default function OrderGetAll() {
   const pages = [
     {
       id: '/car/getAll',
-      label: 'cars',
+      label: 'Автомобілі',
     },
     {
       id: '/user/getAll',
-      label: 'users',
-    },
-    {
-      id: '/car/create',
-      label: 'car create',
-    },
-    {
-      id: '/car/delete',
-      label: 'car delete',
-    },
-    {
-      id: '/',
-      label: 'login',
-    },
-    {
-      id: '/user/create',
-      label: 'user create',
-    },
-    {
-      id: '/user/delete',
-      label: 'user delete',
-    },
-    {
-      id: '/personal/delete',
-      label: 'personal delete',
-    },
-    {
-      id: '/personal/create',
-      label: 'personal create',
+      label: 'Клієнти',
     },
     {
       id: '/personal/getAll',
-      label: 'personal',
-    },
-    {
-      id: '/order/create',
-      label: 'order create',
+      label: 'Персонал',
     },
     {
       id: '/order/getAll',
-      label: 'order',
-    },
-    {
-      id: '/order/delete',
-      label: 'order delete',
+      label: 'Заявки',
     },
   ];
 
@@ -75,30 +42,64 @@ export default function OrderGetAll() {
   return (
     <>
       <div>
-        {pages.map((page) => (
-          <button
-            key={page.id}
-            onClick={() => {
-              setIsLoading(true);
-              navigate(page.id);
-            }}
-            disabled={isLoading}
-            type="button"
-            className="btn btn-primary"
-          >
-            {page.label}
-          </button>
-        ))}
-        {order &&
-          order.map((item: any) => (
-            <div key={item.id}>
-              <div>ID: {item.id}</div>
-              <div>ID Користувача: {item.userId}</div>
-              <div>ID Автомобіля: {item.carId}</div>
-              <div>Список робіт: {item.workList}</div>
-              <div>Час реєстрації запиту: {item.createData}</div>
+        <div className={styles.header}>
+          <div className={styles.header1}>
+            <img src={LogoImg} alt="error" className={styles.logoImg} />
+            <div
+              onClick={() => {
+                window.location.href = '/';
+              }}
+            >
+              <img src={exitImg} alt="error" className={styles.exitImg} />
             </div>
-          ))}
+          </div>
+          <div className={styles.header2}>
+            {pages.map((page) => (
+              <button
+                key={page.id}
+                onClick={() => {
+                  setIsLoading(true);
+                  navigate(page.id);
+                }}
+                disabled={isLoading}
+                type="button"
+                className={styles.btn}
+              >
+                {page.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className={styles.info}>
+          <div className={styles.sidebar}>
+            {order &&
+              order.map((item: any) => (
+                <>
+                  <div
+                    className={styles.item}
+                    onClick={() => {
+                      setSelectedOrder(item);
+                      console.log(item);
+                    }}
+                  >
+                    {item.registerPlate} {item.brand}
+                  </div>
+                </>
+              ))}
+          </div>
+
+          <div className={styles.content}>
+            {selectedOrder && (
+              <>
+                <div>ID: {selectedOrder.id}</div>
+                <div>ID Користувача: {selectedOrder.userId}</div>
+                <div>ID Автомобіля: {selectedOrder.carId}</div>
+                <div>Список робіт: {selectedOrder.workList}</div>
+                <div>Час реєстрації запиту: {selectedOrder.createData}</div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </>
   );

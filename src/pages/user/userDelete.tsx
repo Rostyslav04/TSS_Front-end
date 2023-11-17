@@ -1,106 +1,44 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import styles from './user.module.scss';
 
-export default function UserDelete() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [id, setId] = useState('');
-  const navigate = useNavigate();
+interface IProps {
+  active: boolean;
+  setActive: (data: boolean) => void;
+  userId: string;
+}
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+export default function UserDelete({ active, setActive, userId }: IProps) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
 
     try {
       const response = await axios.post('http://localhost:3001/user/delete', {
-        id,
+        id: userId,
       });
 
       if (response.status === 200) {
-        console.log('Користувача видалено!');
-        navigate('/user/getAll');
+        window.location.reload();
       } else {
-        console.log('Виникла помилка!');
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const pages = [
-    {
-      id: '/car/getAll',
-      label: 'cars',
-    },
-    {
-      id: '/user/getAll',
-      label: 'users',
-    },
-    {
-      id: '/car/create',
-      label: 'car create',
-    },
-    {
-      id: '/car/delete',
-      label: 'car delete',
-    },
-    {
-      id: '/',
-      label: 'login',
-    },
-    {
-      id: '/user/create',
-      label: 'user create',
-    },
-    {
-      id: '/user/delete',
-      label: 'user delete',
-    },
-    {
-      id: '/personal/delete',
-      label: 'personal delete',
-    },
-    {
-      id: '/personal/create',
-      label: 'personal create',
-    },
-    {
-      id: '/personal/getAll',
-      label: 'personal',
-    },
-    {
-      id: '/order/create',
-      label: 'order create',
-    },
-    {
-      id: '/order/getAll',
-      label: 'order',
-    },
-    {
-      id: '/order/delete',
-      label: 'order delete',
-    },
-  ];
-
   return (
     <>
-      {pages.map((page) => (
-        <button
-          key={page.id}
-          onClick={() => {
-            setIsLoading(true);
-            navigate(page.id);
-          }}
-          disabled={isLoading}
-          type="button"
-          className="btn btn-primary"
+      <div className={active ? `${styles.popup_active}` : `${styles.popup}`} onClick={() => setActive(false)}>
+        <div
+          className={active ? `${styles.popup_content_active}` : `${styles.popup_content}`}
+          onClick={(e) => e.stopPropagation()}
         >
-          {page.label}
-        </button>
-      ))}
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="id" value={id} onChange={(e) => setId(e.target.value)} />
-        <button type="submit">Надіслати</button>
-      </form>
+          <form onSubmit={handleSubmit} className={styles.form_delete}>
+            <div>Видалити користувача?</div>
+            <button type="submit" className={styles.button}>Підтвердити</button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }

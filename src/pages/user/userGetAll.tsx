@@ -1,15 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserService } from '../../service/user.service';
+import { CarAll } from '../../service/car.service';
 import styles from './user.module.scss';
 import LogoImg from '../../../src/assets/img/logo.png';
 import exitImg from '../../../src/assets/img/exit.png';
+import UserCreate from './userCreate';
+import CopyIcon from '../../assets/svg/copy.svg';
+import DelIcon from '../../assets/svg/del.svg';
+import UserDelete from './userDelete';
 
 export default function UserGetAll() {
   const [data, setData] = useState<any>(null);
+  const [car, setCar] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [PopUpActive, setPopUpActive] = useState(false);
+  const [UserDeleteActive, setUserDeleteActive] = useState(false);
   const navigate = useNavigate();
+  const gitOnServerCar = async () => {
+    const car = await CarAll();
+    setCar(car);
+  };
+  const copyText = () => {
+    navigator.clipboard.writeText(`${selectedUser.id}`);
+    const message = document.createElement('div');
+    message.classList.add('message');
+    message.textContent = 'Скопійовано';
+    document.body.appendChild(message);
+    setTimeout(() => {
+      message.remove();
+    }, 500);
+  };
   const gitOnServer = async () => {
     const res = await UserService();
     setData(res);
@@ -36,6 +58,7 @@ export default function UserGetAll() {
 
   useEffect(() => {
     gitOnServer();
+    gitOnServerCar();
   }, []);
 
   return (
@@ -70,6 +93,15 @@ export default function UserGetAll() {
       </div>
       <div className={styles.info}>
         <div className={styles.sidebar}>
+          <div className={styles.nameButton}>
+            <div className={styles.name}>Клієнти</div>
+            <div>
+              <div className={styles.createButton} onClick={() => setPopUpActive(true)}>
+                +
+              </div>
+              <UserCreate active={PopUpActive} setActive={setPopUpActive} />
+            </div>
+          </div>
           {data &&
             data.map((item: any) => (
               <>
@@ -85,21 +117,44 @@ export default function UserGetAll() {
               </>
             ))}
         </div>
-
         <div className={styles.content}>
           {selectedUser && (
             <>
-              <div>ID: {selectedUser.id}</div>
-              <div>Ім'я: {selectedUser.firstName}</div>
-              <div>Прізвище: {selectedUser.lastName}</div>
-              <div>По батькові: {selectedUser.surName}</div>
-              <div>Телефон: {selectedUser.phone}</div>
-              <div>Email: {selectedUser.email}</div>
+              <div className={styles.infoBlock}>
+                <div className={styles.infoUser}>
+                  <div className={styles.idBlock}>
+                    <div>ID: {selectedUser.id}</div>
+                    <div className={styles.block}>
+                      <div className={styles.idButton}>
+                        <img src={CopyIcon} alt="error" className={styles.ico} onClick={copyText} />
+                      </div>
+                      <div className={styles.idButton}>
+                        <img
+                          src={DelIcon}
+                          alt="error"
+                          className={styles.ico}
+                          onClick={() => setUserDeleteActive(true)}
+                        />
+                        <UserDelete
+                          active={UserDeleteActive}
+                          setActive={setUserDeleteActive}
+                          userId={selectedUser.id}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>Ім'я: {selectedUser.firstName}</div>
+                  <div>Прізвище: {selectedUser.lastName}</div>
+                  <div>По батькові: {selectedUser.surName}</div>
+                  <div>Телефон: {selectedUser.phone}</div>
+                  <div>Email: {selectedUser.email}</div>
+                  <div>------------------------------</div>
+                </div>
+                <div className={styles.buttonBlock}>+</div>
+              </div>
             </>
           )}
         </div>
-
-        <div className={styles.createCar}>{/* <button>+</button> */}</div>
       </div>
     </>
   );
