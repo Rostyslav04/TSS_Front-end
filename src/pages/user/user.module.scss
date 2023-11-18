@@ -7,7 +7,7 @@ body {
   font-size: 1.5rem;
   margin: 0;
   padding: 0;
-  // -webkit-user-select: none;
+  -webkit-user-select: none;
 }
 
 .login {
@@ -210,10 +210,21 @@ body {
 }
 
 .content {
+  display: flex;
+}
+
+.content1 {
   margin: 10px;
   height: 100%;
-  width: 500px;
+  width: 40vw;
   color: #98a0a9;
+}
+
+.content2 {
+  color: #98a0a9;
+  border-left: 3px dashed #2f3746;
+  height: 100vh;
+  width: 42vw;
 }
 
 .info {
@@ -243,6 +254,18 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-size: 28px;
+  transition: all 0.02s ease-in-out;
+
+  &:active {
+    transform: scale(0.9);
+
+    &::before {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+      z-index: -1;
+    }
+  }
 
   &:hover {
     background-color: #004eeb;
@@ -346,7 +369,7 @@ body {
 
 .infoBlock {
   display: flex;
-  width: 900px;
+  width: 100%;
 }
 
 .infoUser {
@@ -354,14 +377,8 @@ body {
   border-radius: 16px;
   height: 100%;
   padding: 10px;
-  width: 600px;
+  width: 100%;
   border: 1px solid #7ca4ae;
-}
-
-.buttonBlock {
-  margin-left: 10px;
-  border-left: 3px dashed #2f3746;
-  height: 100vh;
 }
 
 .idBlock {
@@ -404,4 +421,32 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 28px;
+}
+
+.createCar {
+  background-color: #2970ff;
+  color: #ffffff;
+  border-radius: 8px;
+  width: 70px;
+  margin-top: 10px;
+  padding: 5px;
+  transition: all 0.02s ease-in-out;
+
+  &:active {
+    transform: scale(0.9);
+
+    &::before {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+      z-index: -1;
+    }
+  }
+
+  &:hover {
+    background-color: #004eeb;
+  }
+}
+
+.right {
+  display: flex;
+  justify-content: end;
 }
