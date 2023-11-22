@@ -8,13 +8,16 @@ import UserCreate from './userCreate';
 import CopyIcon from '../../assets/svg/copy.svg';
 import DelIcon from '../../assets/svg/del.svg';
 import UserDelete from './userDelete';
+import CarCreate from '../car/carCreate';
 
 export default function UserGetAll() {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [PopUpActive, setPopUpActive] = useState(false);
+  const [CarCreateActive, setCarCreateActive] = useState(false);
   const [UserDeleteActive, setUserDeleteActive] = useState(false);
+  const [toReload, setToReload] = useState<boolean>(false);
   const navigate = useNavigate();
   const copyText = () => {
     navigator.clipboard.writeText(`${selectedUser.id}`);
@@ -26,6 +29,7 @@ export default function UserGetAll() {
       message.remove();
     }, 500);
   };
+
   const gitOnServer = async () => {
     const res = await UserService();
     setData(res);
@@ -53,6 +57,13 @@ export default function UserGetAll() {
   useEffect(() => {
     gitOnServer();
   }, []);
+
+  useEffect(() => {
+    if (toReload) {
+      setToReload(false);
+      gitOnServer();
+    }
+  }, [toReload]);
 
   return (
     <>
@@ -97,17 +108,15 @@ export default function UserGetAll() {
           </div>
           {data &&
             data.map((item: any) => (
-              <>
-                <div
-                  className={styles.item}
-                  onClick={() => {
-                    setSelectedUser(item);
-                    console.log(item);
-                  }}
-                >
-                  {item.firstName} {item.lastName} {item.surName}
-                </div>
-              </>
+              <div
+                key={item.id}
+                className={styles.item}
+                onClick={() => {
+                  setSelectedUser(item);
+                }}
+              >
+                {item.firstName} {item.lastName}
+              </div>
             ))}
         </div>
         <div className={styles.content}>
@@ -142,6 +151,8 @@ export default function UserGetAll() {
                     <div>По батькові: {selectedUser.surName}</div>
                     <div>Телефон: {selectedUser.phone}</div>
                     <div>Email: {selectedUser.email}</div>
+                    <div>ID car: {selectedUser.carId}</div>
+                    <div>ID user: {selectedUser.userId}</div>
                   </div>
                 </div>
               </>
@@ -150,8 +161,11 @@ export default function UserGetAll() {
           {selectedUser && (
             <div className={styles.content2}>
               <div className={styles.right}>
-                  <div className={styles.createCar}>+ add</div> 
+                <div className={styles.createCar} onClick={() => setCarCreateActive(true)}>
+                  + add
                 </div>
+                <CarCreate active={CarCreateActive} setActive={setCarCreateActive} userIdImport={selectedUser.id} />
+              </div>
             </div>
           )}
         </div>

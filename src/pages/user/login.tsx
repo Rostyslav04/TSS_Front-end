@@ -18,10 +18,8 @@ export default function LoginFunction() {
       });
 
       if (response.status === 200) {
-        console.log('rebvbf');
         navigate('/user/getAll');
       } else {
-        console.log('err');
       }
     } catch (error) {
       console.log(error);

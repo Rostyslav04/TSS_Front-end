@@ -79,7 +79,6 @@ export default function CarGetAll() {
                     className={styles.item}
                     onClick={() => {
                       setSelectedCar(item);
-                      console.log(item);
                     }}
                   >
                    {item.registerPlate} {item.brand} 

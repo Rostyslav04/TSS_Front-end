@@ -7,13 +7,10 @@ import UserGetById from './pages/user/userGetById';
 import UserGetAll from './pages/user/userGetAll';
 import CarGetAll from './pages/car/carGetAll';
 import CarGetById from './pages/car/carGetById';
-import CarCreate from './pages/car/carCreate';
 import CarDelete from './pages/car/carDelete';
 import PersonalGetById from './pages/personal/personalGetById';
 import PersonalCreate from './pages/personal/personalCreate';
 import PersonalDelete from './pages/personal/personalDelete';
-import UserToCarGetById from './pages/userToCar/userToCarGetById';
-import UserToCarCreate from './pages/userToCar/userToCarCreate';
 import UserToCarDelete from './pages/userToCar/userToCarDelete';
 import OrderGetById from './pages/order/orderGetById';
 import OrderCreate from './pages/order/orderCreate';
@@ -48,10 +45,6 @@ const router = createBrowserRouter([
     element: <CarGetById />,
   },
   {
-    path: '/car/create',
-    element: <CarCreate />,
-  },
-  {
     path: '/car/delete',
     element: <CarDelete />,
   },
@@ -78,17 +71,10 @@ const router = createBrowserRouter([
   // ----------------------------------------------------------------------
 
   {
-    path: '/userToCar/getById',
-    element: <UserToCarGetById />,
-  },
-  {
-    path: '/userToCar/create',
-    element: <UserToCarCreate />,
-  },
-  {
     path: '/userToCar/delete',
     element: <UserToCarDelete />,
   },
+  
 
   // ----------------------------------------------------------------------
 

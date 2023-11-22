@@ -43,7 +43,7 @@ export default function UserCreate({ active, setActive }: IProps) {
           onClick={(e) => e.stopPropagation()}
         >
           <form onSubmit={handleSubmit} className={styles.formCreate}>
-            <div className={styles.popupName}>Створити користувача</div>
+            <div className={styles.popupName}>Додати користувача</div>
             <input type="text" placeholder="Ім'я" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={styles.input}/>
             <input type="text" placeholder="Прізвище" value={lastName} onChange={(e) => setLastName(e.target.value)} className={styles.input}/>
             <input type="text" placeholder="По батькові" value={surName} onChange={(e) => setSurName(e.target.value)} className={styles.input}/>

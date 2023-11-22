@@ -79,7 +79,6 @@ export default function OrderGetAll() {
                     className={styles.item}
                     onClick={() => {
                       setSelectedOrder(item);
-                      console.log(item);
                     }}
                   >
                     {item.registerPlate} {item.brand}
