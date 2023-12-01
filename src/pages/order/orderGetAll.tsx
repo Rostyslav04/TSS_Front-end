@@ -81,7 +81,7 @@ export default function OrderGetAll() {
                       setSelectedOrder(item);
                     }}
                   >
-                    {item.registerPlate} {item.brand}
+                    {item.carId}
                   </div>
                 </>
               ))}

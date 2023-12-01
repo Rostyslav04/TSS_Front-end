@@ -7,13 +7,11 @@ import UserGetById from './pages/user/userGetById';
 import UserGetAll from './pages/user/userGetAll';
 import CarGetAll from './pages/car/carGetAll';
 import CarGetById from './pages/car/carGetById';
-import CarDelete from './pages/car/carDelete';
 import PersonalGetById from './pages/personal/personalGetById';
 import PersonalCreate from './pages/personal/personalCreate';
 import PersonalDelete from './pages/personal/personalDelete';
 import UserToCarDelete from './pages/userToCar/userToCarDelete';
 import OrderGetById from './pages/order/orderGetById';
-import OrderCreate from './pages/order/orderCreate';
 import OrderGetAll from './pages/order/orderGetAll';
 import OrderDelete from './pages/order/orderDelete';
 import PersonalGetAll from './pages/personal/personalGetAll';
@@ -43,10 +41,6 @@ const router = createBrowserRouter([
   {
     path: '/car/getById',
     element: <CarGetById />,
-  },
-  {
-    path: '/car/delete',
-    element: <CarDelete />,
   },
 
   // ----------------------------------------------------------------------
@@ -81,10 +75,6 @@ const router = createBrowserRouter([
   {
     path: '/order/getById',
     element: <OrderGetById />,
-  },
-  {
-    path: '/order/create',
-    element: <OrderCreate />,
   },
   {
     path: '/order/delete',

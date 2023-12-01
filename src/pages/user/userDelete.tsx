@@ -10,7 +10,6 @@ interface IProps {
 export default function UserDelete({ active, setActive, userId }: IProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
 
     try {
       const response = await axios.post('http://localhost:3001/user/delete', {
@@ -35,7 +34,9 @@ export default function UserDelete({ active, setActive, userId }: IProps) {
         >
           <form onSubmit={handleSubmit} className={styles.form_delete}>
             <div>Видалити користувача?</div>
-            <button type="submit" className={styles.button}>Підтвердити</button>
+            <button type="submit" className={styles.button}>
+              Підтвердити
+            </button>
           </form>
         </div>
       </div>

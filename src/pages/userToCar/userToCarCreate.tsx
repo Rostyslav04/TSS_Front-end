@@ -1,12 +1,10 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 interface IProps {
   userIdImport: string;
 }
 
 export default function UserToCarCreate({ userIdImport }: IProps) {
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,8 +17,6 @@ export default function UserToCarCreate({ userIdImport }: IProps) {
 
 
       if (response.status === 200) {
-        console.log('ok');
-        navigate('/order/getAll');
 
       } else {
         console.log('error');

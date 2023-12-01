@@ -4,20 +4,27 @@ import { UserService } from '../../service/user.service';
 import styles from './user.module.scss';
 import LogoImg from '../../../src/assets/img/logo.png';
 import exitImg from '../../../src/assets/img/exit.png';
-import UserCreate from './userCreate';
 import CopyIcon from '../../assets/svg/copy.svg';
 import DelIcon from '../../assets/svg/del.svg';
+import Plate from '../../assets/img/Plate.png';
+import UserCreate from './userCreate';
 import UserDelete from './userDelete';
 import CarCreate from '../car/carCreate';
+import CarDelete from '../car/carDelete';
+import OrderCreate from '../order/orderCreate'
+import axios from 'axios';
 
 export default function UserGetAll() {
   const [data, setData] = useState<any>(null);
+  const [userCars, setUserCars] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedCar, setSelectedCar] = useState<any>(null);
   const [PopUpActive, setPopUpActive] = useState(false);
   const [CarCreateActive, setCarCreateActive] = useState(false);
+  const [OrderCreateActive, setOrderCreateActive] = useState(false);
   const [UserDeleteActive, setUserDeleteActive] = useState(false);
-  const [toReload, setToReload] = useState<boolean>(false);
+  const [CarDeleteActive, setCarDeleteActive] = useState(false);
   const navigate = useNavigate();
   const copyText = () => {
     navigator.clipboard.writeText(`${selectedUser.id}`);
@@ -54,16 +61,26 @@ export default function UserGetAll() {
     },
   ];
 
+  const userToCar = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/userToCar/getAll', {
+        userId: selectedUser.id,
+      });
+      setUserCars(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     gitOnServer();
   }, []);
 
   useEffect(() => {
-    if (toReload) {
-      setToReload(false);
-      gitOnServer();
+    if (selectedUser) {
+      userToCar();
     }
-  }, [toReload]);
+  }, [selectedUser]);
 
   return (
     <>
@@ -151,8 +168,37 @@ export default function UserGetAll() {
                     <div>По батькові: {selectedUser.surName}</div>
                     <div>Телефон: {selectedUser.phone}</div>
                     <div>Email: {selectedUser.email}</div>
-                    <div>ID car: {selectedUser.carId}</div>
-                    <div>ID user: {selectedUser.userId}</div>
+                  </div>
+
+                  <div className={styles.createCarButton}>
+                    <div className={styles.border}>--------------------------------------------------</div>
+                    <div className={styles.createCar} onClick={() => setCarCreateActive(true)}>
+                      Додати авто
+                    </div>
+                    <CarCreate active={CarCreateActive} setActive={setCarCreateActive} userIdImport={selectedUser.id} />
+                  </div>
+                  <div className={styles.userCarsBlock}>
+                    <div className={styles.userCars}>
+                      {userCars &&
+                        userCars.map((carInfo: any) => (
+                          <>
+                            <div
+                              key={carInfo.id}
+                              className={styles.carItem}
+                              onClick={() => {
+                                setSelectedCar(carInfo);
+                              }}
+                            >
+                              <div>{carInfo.brand}</div>
+                              <div>{carInfo.year}</div>
+                              <div className={styles.PlateBlock}>
+                                <img src={Plate} alt="error" className={styles.Plate} />
+                                <div className={styles.PlateText}>{carInfo.registerPlate}</div>
+                              </div>
+                            </div>
+                          </>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </>
@@ -160,12 +206,33 @@ export default function UserGetAll() {
           </div>
           {selectedUser && (
             <div className={styles.content2}>
-              <div className={styles.right}>
-                <div className={styles.createCar} onClick={() => setCarCreateActive(true)}>
-                  + add
-                </div>
-                <CarCreate active={CarCreateActive} setActive={setCarCreateActive} userIdImport={selectedUser.id} />
-              </div>
+              {selectedCar && (
+                <>
+                  <div className={styles.carInfo}>
+                    <div className={styles.deleteButton}>
+                      <div>Марка: {selectedCar.brand}</div>
+                      <div className={styles.idButton} onClick={() => setCarDeleteActive(true)}>
+                        <img src={DelIcon} alt="error" className={styles.ico} />
+                        <CarDelete active={CarDeleteActive} setActive={setCarDeleteActive} carId={selectedCar.id} />
+                      </div>
+                    </div>
+                    <div>Модель: {selectedCar.model}</div>
+                    <div>Рік: {selectedCar.year}</div>
+                    <div>VIN: {selectedCar.VIN}</div>
+                    <div className={styles.PlateBlock}>
+                      <img src={Plate} alt="error" className={styles.Plate} />
+                      <div className={styles.PlateText}>{selectedCar.registerPlate}</div>
+                    </div>
+                  </div>
+                  <div className={styles.createOrderButton}>
+                    <div className={styles.border}>-------------------------------------------</div>
+                    <div className={styles.createOrder} onClick={() => setOrderCreateActive(true)}>
+                      Додати список робіт
+                    </div>
+                    <OrderCreate active={OrderCreateActive} setActive={setOrderCreateActive} userIdImport={selectedUser.id} carIdImport={selectedCar.id}/>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </div>
