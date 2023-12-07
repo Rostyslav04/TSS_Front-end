@@ -9,11 +9,8 @@ import CarGetAll from './pages/car/carGetAll';
 import CarGetById from './pages/car/carGetById';
 import PersonalGetById from './pages/personal/personalGetById';
 import PersonalCreate from './pages/personal/personalCreate';
-import PersonalDelete from './pages/personal/personalDelete';
 import UserToCarDelete from './pages/userToCar/userToCarDelete';
-import OrderGetById from './pages/order/orderGetById';
 import OrderGetAll from './pages/order/orderGetAll';
-import OrderDelete from './pages/order/orderDelete';
 import PersonalGetAll from './pages/personal/personalGetAll';
 import './index.scss'
 
@@ -54,10 +51,6 @@ const router = createBrowserRouter([
     element: <PersonalCreate />,
   },
   {
-    path: '/personal/delete',
-    element: <PersonalDelete />,
-  },
-  {
     path: '/personal/getAll',
     element: <PersonalGetAll />,
   },
@@ -72,14 +65,6 @@ const router = createBrowserRouter([
 
   // ----------------------------------------------------------------------
 
-  {
-    path: '/order/getById',
-    element: <OrderGetById />,
-  },
-  {
-    path: '/order/delete',
-    element: <OrderDelete />,
-  },
   {
     path: '/order/getAll',
     element: <OrderGetAll />,

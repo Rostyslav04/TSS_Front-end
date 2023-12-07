@@ -475,7 +475,6 @@ body {
   padding-right: 10px;
   margin-top: 10px;
   height: 30px;
-  // width: 100%;
   cursor: pointer;
   outline: none;
   white-space: nowrap;
@@ -494,8 +493,7 @@ body {
   text-overflow: ellipsis;
 
   &::-webkit-scrollbar {
-    width: 1px;
-    height: 3px;
+    width: 0;
   }
 
   &::-webkit-scrollbar-track {
@@ -503,12 +501,11 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #5d6472;
-    border-radius: 16px;
+    background: none;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #5d6472;
+    background: none;
   }
 }
 
@@ -521,9 +518,6 @@ body {
   margin-top: 10px;
   padding-bottom: 5px;
 
-  * {
-    margin-right: 10px;
-  }
 }
 
 .carInfo {
@@ -550,25 +544,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.PlateBlock {
-  display: flex;
-}
-
-.Plate {
-  width: 150px;
-  height: 30px;
-  background-color: #ffffff;
-  border-radius: 4px;
-}
-
-.PlateText {
-  position: absolute;
-  margin-left: 23px;
-  margin-top: 5px;
-  color: rgb(0, 0, 0);
-  font-size: 20px;
 }
 
 .OrderCreate {
@@ -601,9 +576,163 @@ body {
 }
 
 .createOrderButton {
-  margin-top: 25px;
+  margin-top: 15px;
   margin-left: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.workList {
+  margin: 10px;
+  padding: 10px;
+  height: 370px;
+  background-color: #1c2536;
+  border: solid 1px #7ca4ae;
+  border-radius: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #5d6472;
+    border-radius: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #5d6472;
+  }
+}
+
+.workListName {
+  display: flex;
+  justify-content: space-between;
+}
+
+.PlateBlock {
+  display: flex;
+  width: 200px;
+  height: 40px;
+  border: 2px solid #343134;
+  border-radius: 10px;
+}
+
+.registerPlateBlue {
+  background-color: #002EBA;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+}
+
+.registerPlateFlag {
+  margin-bottom: 5px;
+  width: 15px;
+  height: 10px;
+}
+
+.registerPlateFlagBlue {
+  background-color: #0076FD;
+  width: 100%;
+  height: 50%;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.registerPlateFlagYellow {
+  background-color: #FFD451;
+  width: 100%;
+  height: 50%;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.registerPlateUA {
+  font-size: 12px;
+  color: #EBF8FE;
+}
+
+.registerPlateText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #EBF8FE;
+  color: #343134;
+  font-size: 28px;
+  font-weight: 600;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.PlateBlockMini {
+  display: flex;
+  width: 125px;
+  height: 25px;
+  border: 1px solid #343134;
+  border-radius: 3px;
+}
+
+.registerPlateBlueMini {
+  background-color: #002EBA;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+}
+
+.registerPlateFlagMini {
+  margin-bottom: 5px;
+  width: 10px;
+  height: 5px;
+}
+
+.registerPlateFlagBlueMini {
+  background-color: #0076FD;
+  width: 100%;
+  height: 50%;
+}
+
+.registerPlateFlagYellowMini {
+  background-color: #FFD451;
+  width: 100%;
+  height: 50%;
+}
+
+.registerPlateUAMini {
+  font-size: 8px;
+  color: #EBF8FE;
+}
+
+.registerPlateTextMini {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #EBF8FE;
+  color: #343134;
+  font-size: 18px;
+  font-weight: 600;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.margin {
+  margin-right: 10px;
 }

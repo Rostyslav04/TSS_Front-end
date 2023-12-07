@@ -43,24 +43,43 @@
 }
 
 .sidebar {
-  height: 100vh;
+  height: 85vh;
   width: 250px;
   color: #98a0a9;
   background-color: #1c2536;
   border-right: 1px solid #2f3746;
   border-top: 1px solid #2f3746;
+  overflow-y: auto;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #5d6472;
+    border-radius: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #5d6472;
+  }
 }
 
 .item {
   display: flex;
   align-items: center;
   padding-left: 10px;
+  padding-right: 10px;
   margin-top: 10px;
   height: 30px;
   cursor: pointer;
-  color: #98a0a9;
   outline: none;
-  overflow: hidden;
   white-space: nowrap;
 
   &:hover {
@@ -71,14 +90,88 @@
 }
 
 .content {
+  display: flex;
+}
+
+.content1 {
   margin: 10px;
   height: 100%;
-  width: 500px;
+  width: 40vw;
   color: #98a0a9;
+}
+
+.content2 {
+  color: #98a0a9;
+  border-left: 3px dashed #2f3746;
+  height: 100vh;
+  width: 42vw;
 }
 
 .info {
   display: flex;
+}
+
+.nameButton {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+}
+
+.name {
+  font-size: 28px;
+}
+
+.infoUser {
+  background-color: #1c2536;
+  border-radius: 16px;
+  height: 100%;
+  padding: 10px;
+  width: 96.5%;
+  border: 1px solid #7ca4ae;
+}
+
+.block {
+  display: flex;
+}
+
+.idButton {
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2970ff;
+  color: #ffffff;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #004eeb;
+  }
+}
+
+.ico {
+  width: 70%;
+  height: 70%;
+}
+
+.form_delete {
+  width: 350px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+}
+
+.idBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .popup {
@@ -118,6 +211,8 @@
   background-color: #1c2536;
   transform: scale(0.5);
   transition: 0.4s all;
+  width: 400px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,6 +236,7 @@
   flex-direction: column;
   width: 400px;
   height: 400px;
+  max-height: 400px;
   margin: 20px;
   align-items: center;
   justify-content: center;
@@ -150,26 +246,23 @@
   }
 }
 
-.popupName {
-  font-size: 28px;
-  margin-bottom: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-}
 
 .input {
   width: 95%;
-  height: 40px;
+  height: 300px;
   margin-bottom: 10px;
   background-color: #1c2536;
   border: solid 1px #7ca4ae;
   border-radius: 10px;
   padding-left: 10px;
   outline: #7ca4ae;
-  color: #ffffff;
+  color: #ffffff;  
+  font-size: 18px;
 
   &::placeholder {
     color: #7ca4ae;
+    align-items: flex-start;
+    font-size: 18px;
   }
 
   &:hover {

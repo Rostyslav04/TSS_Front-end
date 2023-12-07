@@ -4,10 +4,13 @@ import { OrderAll } from '../../service/order.service';
 import styles from './order.module.scss';
 import LogoImg from '../../../src/assets/img/logo.png';
 import exitImg from '../../../src/assets/img/exit.png';
+import DelIcon from '../../assets/svg/del.svg';
+import OrderDelete from './orderDelete';
 
 export default function OrderGetAll() {
   const navigate = useNavigate();
   const [selectedOrder, setSelectedOrder] = useState<any>(null);
+  const [OrderDeleteActive, setOrderDeleteActive] = useState(false);
   const [order, setOrder] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -70,8 +73,12 @@ export default function OrderGetAll() {
             ))}
           </div>
         </div>
+
         <div className={styles.info}>
           <div className={styles.sidebar}>
+            <div className={styles.nameButton}>
+              <div className={styles.name}>Персонал</div>
+            </div>
             {order &&
               order.map((item: any) => (
                 <>
@@ -79,24 +86,46 @@ export default function OrderGetAll() {
                     className={styles.item}
                     onClick={() => {
                       setSelectedOrder(item);
+                      console.log(item);
                     }}
                   >
-                    {item.carId}
+                    {item.carId} 
                   </div>
                 </>
               ))}
           </div>
 
           <div className={styles.content}>
-            {selectedOrder && (
-              <>
-                <div>ID: {selectedOrder.id}</div>
-                <div>ID Користувача: {selectedOrder.userId}</div>
-                <div>ID Автомобіля: {selectedOrder.carId}</div>
-                <div>Список робіт: {selectedOrder.workList}</div>
-                <div>Час реєстрації запиту: {selectedOrder.createData}</div>
-              </>
-            )}
+            <div className={styles.content1}>
+              {selectedOrder && (
+                <div className={styles.infoBlock}>
+                  <div className={styles.infoUser}>
+                    <div className={styles.idBlock}>
+                      <div>ID: {selectedOrder.id}</div>
+                      <div className={styles.block}>
+                        <div className={styles.idButton}>
+                          <img
+                            src={DelIcon}
+                            alt="error"
+                            className={styles.ico}
+                            onClick={() => setOrderDeleteActive(true)}
+                          />
+                          <OrderDelete
+                            active={OrderDeleteActive}
+                            setActive={setOrderDeleteActive}
+                            orderId={selectedOrder.id}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div>ID Користувача: {selectedOrder.userId}</div>
+                    <div>ID Автомобіля: {selectedOrder.carId}</div>
+                    <div>Список робіт: {selectedOrder.workList}</div>
+                    <div>Час реєстрації запиту: {selectedOrder.createData}</div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

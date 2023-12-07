@@ -1,81 +1,254 @@
-.header {  
-    background-color: #1C2536;
-    width: 100%;
-  }
-  
-  .header1 {
-    height: 80px;
-    border-bottom: 1px solid #2F3746;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logoImg {
-    padding: 10px;
-    height: 60px;
-  }
-  
-  .exitImg {
-    padding: 20px;
-    height: 40px;
+.header {
+  background-color: #1c2536;
+  width: 100%;
+}
+
+.header1 {
+  height: 80px;
+  border-bottom: 1px solid #2f3746;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoImg {
+  padding: 10px;
+  height: 60px;
+}
+
+.exitImg {
+  padding: 20px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.header2 {
+  height: 40px;
+}
+
+.btn {
+  border-radius: 8px;
+  border: none;
+  width: 200px;
+  height: 40px;
+  background-color: #1c2536;
+  color: #98a0a9;
+  font-size: 18px;
+
+  &:hover {
+    color: #f1ffff;
+    background-color: #252e3e;
     cursor: pointer;
   }
-  
-  .header2 {
-    height: 40px;
+}
+
+.sidebar {
+  height: 85vh;
+  width: 250px;
+  color: #98a0a9;
+  background-color: #1c2536;
+  border-right: 1px solid #2f3746;
+  border-top: 1px solid #2f3746;
+  overflow-y: auto;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
   }
-  
-  .btn{
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #5d6472;
+    border-radius: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #5d6472;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  height: 30px;
+  cursor: pointer;
+  outline: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: #f1ffff;
+    background-color: #252e3e;
     border-radius: 8px;
-    border: none;
-    width: 200px;
-    height: 40px;
-    background-color: #1C2536; 
-    color: #98A0A9;
-    font-size: 18px;
-  
-    &:hover {
-      color: #F1FFFF;
-      background-color: #252E3E;
-      cursor: pointer;
-    }
   }
-  
-  .sidebar {
-    height: 100vh;
-    width: 250px;
-    color: #98A0A9;
-    background-color: #1C2536;
-    border-right: 1px solid #2F3746;
-    border-top: 1px solid #2F3746;
-  }
-  
-  .item {
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    margin-top: 10px;
-    height: 30px;
-    cursor: pointer;
-    outline: none;
-    overflow: hidden;
-    white-space: nowrap;
-  
-    &:hover {
-      color: #F1FFFF;
-      background-color: #252E3E;
-      border-radius: 8px;
-    }
-  }
-  
-  .content {
-    margin: 10px;
-    height: 100%;
-    width: 500px;
-    color: #98A0A9;
-  }
-  
-  .info {
-    display: flex;
-  }
+}
+
+.content {
+  display: flex;
+}
+
+.content1 {
+  margin: 10px;
+  height: 100%;
+  width: 40vw;
+  color: #98a0a9;
+}
+
+.content2 {
+  color: #98a0a9;
+  border-left: 3px dashed #2f3746;
+  height: 100vh;
+  width: 42vw;
+}
+
+.info {
+  display: flex;
+}
+
+.nameButton {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+}
+
+.name {
+  font-size: 28px;
+}
+
+.infoUser {
+  background-color: #1c2536;
+  border-radius: 16px;
+  height: 100%;
+  padding: 10px;
+  width: 96.5%;
+  border: 1px solid #7ca4ae;
+}
+
+.PlateBlock {
+  display: flex;
+  width: 200px;
+  height: 40px;
+  border: 2px solid #343134;
+  border-radius: 10px;
+}
+
+.registerPlateBlue {
+  background-color: #002EBA;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+}
+
+.registerPlateFlag {
+  margin-bottom: 5px;
+  width: 15px;
+  height: 10px;
+}
+
+.registerPlateFlagBlue {
+  background-color: #0076FD;
+  width: 100%;
+  height: 50%;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.registerPlateFlagYellow {
+  background-color: #FFD451;
+  width: 100%;
+  height: 50%;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.registerPlateUA {
+  font-size: 12px;
+  color: #EBF8FE;
+}
+
+.registerPlateText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #EBF8FE;
+  color: #343134;
+  font-size: 28px;
+  font-weight: 600;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.PlateBlockMini {
+  display: flex;
+  width: 125px;
+  height: 25px;
+  border: 1px solid #343134;
+  border-radius: 3px;
+}
+
+.registerPlateBlueMini {
+  background-color: #002EBA;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+}
+
+.registerPlateFlagMini {
+  margin-bottom: 5px;
+  width: 10px;
+  height: 5px;
+}
+
+.registerPlateFlagBlueMini {
+  background-color: #0076FD;
+  width: 100%;
+  height: 50%;
+}
+
+.registerPlateFlagYellowMini {
+  background-color: #FFD451;
+  width: 100%;
+  height: 50%;
+}
+
+.registerPlateUAMini {
+  font-size: 8px;
+  color: #EBF8FE;
+}
+
+.registerPlateTextMini {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #EBF8FE;
+  color: #343134;
+  font-size: 18px;
+  font-weight: 600;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.margin {
+  margin-right: 10px;
+}
+
