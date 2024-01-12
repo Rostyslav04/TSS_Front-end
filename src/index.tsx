@@ -8,7 +8,6 @@ import UserGetAll from './pages/user/userGetAll';
 import CarGetAll from './pages/car/carGetAll';
 import CarGetById from './pages/car/carGetById';
 import PersonalGetById from './pages/personal/personalGetById';
-import PersonalCreate from './pages/personal/personalCreate';
 import UserToCarDelete from './pages/userToCar/userToCarDelete';
 import OrderGetAll from './pages/order/orderGetAll';
 import PersonalGetAll from './pages/personal/personalGetAll';
@@ -45,10 +44,6 @@ const router = createBrowserRouter([
   {
     path: '/personal/getById',
     element: <PersonalGetById />,
-  },
-  {
-    path: '/personal/create',
-    element: <PersonalCreate />,
   },
   {
     path: '/personal/getAll',

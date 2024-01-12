@@ -6,12 +6,14 @@ import LogoImg from '../../../src/assets/img/logo.png';
 import exitImg from '../../../src/assets/img/exit.png';
 import DelIcon from '../../assets/svg/del.svg';
 import PersonalDelete from './personalDelete';
+import PersonalCreate from './personalCreate';
 
 export default function PersonalGetAll() {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPersonal, setSelectedPersonal] = useState<any>(null);
   const [UserDeleteActive, setUserDeleteActive] = useState(false);
+  const [PopUpActive, setPopUpActive] = useState(false);
   const navigate = useNavigate();
   const gitOnServer = async () => {
     const res = await getAll();
@@ -77,6 +79,12 @@ export default function PersonalGetAll() {
           <div className={styles.sidebar}>
             <div className={styles.nameButton}>
               <div className={styles.name}>Персонал</div>
+              <div>
+                <div className={styles.createButton} onClick={() => setPopUpActive(true)}>
+                  +
+                </div>
+                <PersonalCreate active={PopUpActive} setActive={setPopUpActive} />
+              </div>
             </div>
             {data &&
               data.map((item: any) => (
@@ -88,7 +96,7 @@ export default function PersonalGetAll() {
                       console.log(item);
                     }}
                   >
-                    {item.firstName} {item.lastName} {item.role}
+                    {item.lastName} {item.firstName} 
                   </div>
                 </>
               ))}

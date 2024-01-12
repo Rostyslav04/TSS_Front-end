@@ -10,31 +10,8 @@ interface IProps {
   carIdImport: string;
 }
 
-// interface IInput {
-//   id: string;
-//   data: string;
-// }
-
 export default function OrderCreate({ active, setActive, userIdImport, carIdImport }: IProps) {
   const [workList, setWorkList] = useState('');
-  // const [data, setData] = useState<IInput[]>([]);
-
-  // const addInput = () => {
-  //   setData((prev) => [...prev, { id: v4(), data: '' }]);
-  // };
-  // const deleteInput = (id: string) => {
-  //   setData((prev) => prev.filter((item) => item.id === id));
-  // };
-  // const changeInput = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
-  //   setData((prev) =>
-  //     prev.map((item) => {
-  //       if (item.id === id) {
-  //         return { ...item, data: e.target.value };
-  //       }
-  //       return item;
-  //     }),
-  //   );
-  // };
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -63,23 +40,6 @@ export default function OrderCreate({ active, setActive, userIdImport, carIdImpo
         onClick={(e) => e.stopPropagation()}
       >
         <form onSubmit={handleSubmit} className={styles.formCreate}>
-          {/* <button onClick={addInput}>add</button>
-          {data.map((item) => (
-            <input
-              type="text"
-              placeholder="Список робіт"
-              value={data.find((findDate) => findDate.id === item.id)?.data}
-              onChange={(e) => changeInput(e, item.id)}
-              className={styles.input}
-            />
-          ))} */}
-          {/* <input
-              type="text"
-              placeholder="Список робіт"
-              value={workList}
-              onChange={(e) => setWorkList(e.target.value)}
-              className={styles.input}
-            /> */}
           <textarea
             name=""
             id=""
